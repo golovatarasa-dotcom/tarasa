@@ -590,10 +590,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const thumbNextBtn = document.querySelector('.lesson-carousel-title .carousel-arrow.next');
     let currentThumbIndex = 0;
 
+    // Map philosopher name to their main bust image
+    const philosopherImages = {
+        'epictetus':  'assets/images/philosopher_epictetus_clean_v3.png',
+        'chrysippus': 'assets/images/philosopher_chrysippus_clean_v3.png',
+        'zeno':       'assets/images/philosopher_zeno_clean_v3.png',
+        'marcus':     'assets/images/hero_marcus_bust_clean.png'
+    };
+
+    const mainBustImg = document.querySelector('.main-bust-img');
+
     function updateThumbCarousel(index) {
         thumbCards.forEach((card, idx) => {
             if (idx === index) {
                 card.classList.add('active');
+                // Swap main bust image
+                if (mainBustImg) {
+                    const philosopher = card.dataset.philosopher;
+                    const newSrc = philosopherImages[philosopher];
+                    if (newSrc) {
+                        gsap.to(mainBustImg, { opacity: 0, duration: 0.25, ease: 'power2.in', onComplete: () => {
+                            mainBustImg.src = newSrc;
+                            gsap.to(mainBustImg, { opacity: 1, duration: 0.4, ease: 'power2.out' });
+                        }});
+                    }
+                }
             } else {
                 card.classList.remove('active');
             }
