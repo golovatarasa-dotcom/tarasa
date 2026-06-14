@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderer: 'svg',
                     loop: false,
                     autoplay: true,
-                    path: 'assets/lottie/intro.json?v=1.2'
+                    path: 'assets/lottie/intro.json?v=1.3'
                 });
             } else {
                 console.warn('Lottie player is not defined. Skipping animation.');
