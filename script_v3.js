@@ -584,7 +584,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    /* --- General Practices Section Tab System & Slider --- */
+    /* --- Hero "Find Lesson" Thumbnail Carousel --- */
+    const thumbCards = document.querySelectorAll('.lesson-thumbnails .thumb-card');
+    const thumbPrevBtn = document.querySelector('.lesson-carousel-title .carousel-arrow.prev');
+    const thumbNextBtn = document.querySelector('.lesson-carousel-title .carousel-arrow.next');
+    let currentThumbIndex = 0;
+
+    function updateThumbCarousel(index) {
+        thumbCards.forEach((card, idx) => {
+            if (idx === index) {
+                card.classList.add('active');
+                gsap.to(card, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
+            } else {
+                card.classList.remove('active');
+                gsap.to(card, { opacity: 0.4, scale: 0.92, duration: 0.4, ease: 'power2.out' });
+            }
+        });
+    }
+
+    if (thumbPrevBtn) {
+        thumbPrevBtn.addEventListener('click', () => {
+            currentThumbIndex = (currentThumbIndex - 1 + thumbCards.length) % thumbCards.length;
+            updateThumbCarousel(currentThumbIndex);
+        });
+    }
+
+    if (thumbNextBtn) {
+        thumbNextBtn.addEventListener('click', () => {
+            currentThumbIndex = (currentThumbIndex + 1) % thumbCards.length;
+            updateThumbCarousel(currentThumbIndex);
+        });
+    }
+
+    // Init state
+    updateThumbCarousel(currentThumbIndex);
+
+
+
     const tabBtns = document.querySelectorAll('.tab-btn');
     const theoryDescription = document.getElementById('theory-description');
     const theoryHeading = document.querySelector('.practices-left .panel-heading');
