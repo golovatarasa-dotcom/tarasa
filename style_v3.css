@@ -1977,22 +1977,30 @@ body.light-theme #intro-splash {
     width: 100%;
     height: auto;
     max-width: 220px;
-    filter: brightness(0) saturate(100%) invert(64%) sepia(36%) saturate(1287%) hue-rotate(36deg) brightness(97%) contrast(89%);
+    filter: invert(74%) sepia(35%) saturate(800%) hue-rotate(355deg) brightness(93%) contrast(92%); /* Premium gold filter for dark mode */
     opacity: 0;
     transform: scale(0.85);
 }
 
+body.light-theme #splash-logo-img {
+    filter: brightness(0) opacity(0.85); /* Premium charcoal/black filter for light mode */
+}
+
 .logo-glow {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0) 70%);
-    top: 35%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.6) 0%, rgba(212, 175, 55, 0.15) 50%, rgba(212, 175, 55, 0) 70%);
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.2);
     opacity: 0;
     pointer-events: none;
     z-index: -1;
+}
+
+body.light-theme .logo-glow {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
 }
 

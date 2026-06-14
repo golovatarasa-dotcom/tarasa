@@ -56,17 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logoGlow) {
             gsap.timeline()
                 .to(logoGlow, {
-                    opacity: 0.8,
-                    scale: 1.2,
-                    duration: 0.6,
+                    opacity: 0.9,
+                    scale: 1.5,
+                    duration: 0.7,
                     ease: 'power2.out',
-                    delay: 0.3
+                    delay: 0.2
                 })
                 .to(logoGlow, {
                     opacity: 0,
-                    scale: 2.2,
+                    scale: 3.5,
                     duration: 0.9,
-                    ease: 'power1.out'
+                    ease: 'power3.out'
                 });
         }
 
