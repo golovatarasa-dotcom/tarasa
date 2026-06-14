@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer: 'svg',
             loop: false,
             autoplay: true,
-            path: 'assets/lottie/intro.json'
+            path: 'assets/lottie/intro.json?v=1.1'
         });
 
         // Disable scrolling during splash
