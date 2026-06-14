@@ -36,13 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const introSplash = document.getElementById('intro-splash');
     
     if (introSplash) {
-        lottie.loadAnimation({
-            container: document.getElementById('lottie-container'),
-            renderer: 'svg',
-            loop: false,
-            autoplay: true,
-            path: 'assets/lottie/intro.json?v=1.1'
-        });
+        try {
+            if (typeof lottie !== 'undefined') {
+                lottie.loadAnimation({
+                    container: document.getElementById('lottie-container'),
+                    renderer: 'svg',
+                    loop: false,
+                    autoplay: true,
+                    path: 'assets/lottie/intro.json?v=1.2'
+                });
+            } else {
+                console.warn('Lottie player is not defined. Skipping animation.');
+            }
+        } catch (e) {
+            console.error('Failed to initialize Lottie animation:', e);
+        }
 
         // Disable scrolling during splash
         document.body.style.overflow = 'hidden';
