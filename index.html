@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoicism 101 - A Philosophy of Virtue and Logic</title>
+    <meta name="description" content="Explore the wisdom of Stoic philosophy. Learn the teachings of Marcus Aurelius, Epictetus, Chrysippus, and Zeno. Find practices for logic, ethics, and eudaimonia.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_v3.css">
+</head>
+<body>
+
+    <!-- Background Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Background Grid Lines -->
+    <div class="grid-lines">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header id="main-header">
+        <div class="header-logo">
+            <div class="logo-wrapper">
+                <img src="assets/images/stoic_logo.png" alt="Stoicism Logo" class="logo-img lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                <div class="image-placeholder logo-placeholder">
+                    <svg viewBox="0 0 100 100" class="logo-svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="1.5 2"/>
+                        <path d="M36 34 C36 24, 64 24, 64 36 C64 48, 36 50, 36 62 C36 74, 64 74, 64 64" fill="none" stroke="#d4af37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <text x="50" y="94" font-family="'Cinzel', serif" font-size="10" fill="#d4af37" text-anchor="middle" letter-spacing="1">101</text>
+                    </svg>
+                </div>
+            </div>
+            <span class="logo-text">STOICISM 101</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="nav-link active">Home</a>
+            <a href="#popular" class="nav-link">About</a>
+            <a href="#practices" class="nav-link">Practices</a>
+            <a href="#why-philosophy" class="nav-link">Theory</a>
+        </nav>
+        <div class="header-actions">
+            <!-- Theme Toggle Switch -->
+            <button id="theme-toggle-btn" class="theme-toggle" aria-label="Toggle Theme">
+                <span class="toggle-pill">
+                    <span class="toggle-text text-day">DAY MODE</span>
+                    <span class="toggle-text text-night">NIGHT MODE</span>
+                    <span class="toggle-handle">
+                        <!-- Sun Icon -->
+                        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <!-- Moon Icon -->
+                        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </span>
+            </button>
+            <a href="#experts" class="experts-link">Experts</a>
+            <button class="grid-menu-btn" aria-label="Menu">
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+                <span class="grid-dot"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="rotated-indicator left-indicator">Stoicism</div>
+            <div class="rotated-indicator right-indicator">Philosophy.101</div>
+            <div class="hero-bg-text">STOICISM</div>
+            
+            <div class="hero-container">
+                <!-- Left Content: Eudaimonia -->
+                <div class="hero-left">
+                    <span class="subtitle-gold">FOR A HEART OF GOLD</span>
+                    <h1 class="hero-title">Eudaimonia</h1>
+                    
+                    <div class="hero-columns">
+                        <p class="hero-description main-desc">
+                            Stoicism is a school of Hellenistic philosophy, founded by Zeno of Citium in Athens in the early 3rd century BC. It is a philosophy of personal virtue ethics informed by its system of logic and its views on the natural world.
+                        </p>
+                        <p class="hero-description sub-desc">
+                            Virtue is the only good for human beings, and those external things, such as health, wealth, and pleasure, are not good or bad in themselves (adiaphora), but have value as material for virtue to act upon.
+                        </p>
+                    </div>
+                    
+                    <a href="#about-eudaimonia" class="read-more-btn">Read More <span class="arrow">→</span></a>
+                </div>
+
+                <!-- Center Content: Bust Statue -->
+                <div class="hero-center">
+                    <div class="statue-glow"></div>
+                    <div class="main-bust-container">
+                        <img src="assets/images/hero_marcus_bust_clean.png" alt="Marcus Aurelius Marble Bust with Gold Heart" class="main-bust-img lazy-image" onload="this.classList.add('loaded'); this.classList.remove('error');" onerror="this.classList.add('error'); this.classList.remove('loaded');">
+                        <div class="image-placeholder main-bust-placeholder">
+                            <div class="placeholder-glow"></div>
+                            <svg viewBox="0 0 400 500" class="bust-svg">
+                                <defs>
+                                    <linearGradient id="marbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="var(--marble-grad-start)" stop-opacity="var(--marble-grad-opacity-start)" />
+                                        <stop offset="35%" stop-color="var(--marble-grad-start)" stop-opacity="var(--marble-grad-opacity-mid)" />
+                                        <stop offset="70%" stop-color="var(--marble-grad-end)" stop-opacity="var(--marble-grad-opacity-mid)" />
+                                        <stop offset="100%" stop-color="var(--marble-grad-end)" stop-opacity="var(--marble-grad-opacity-end)" />
+                                    </linearGradient>
+                                    <linearGradient id="goldHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ffe066" />
+                                        <stop offset="40%" stop-color="#f59f00" />
+                                        <stop offset="70%" stop-color="#d9480f" />
+                                        <stop offset="100%" stop-color="#ffd43b" />
+                                    </linearGradient>
+                                    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+                                        <feGaussianBlur stdDeviation="10" result="blur"/>
+                                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                    </filter>
+                                </defs>
+                                <path d="M120 420 L280 420 L260 470 L140 470 Z" fill="url(#marbleGrad)" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+                                <ellipse cx="200" cy="420" rx="90" ry="15" fill="url(#marbleGrad)" stroke="var(--svg-stroke-light)" stroke-width="1.5"/>
+                                <rect x="180" y="360" width="40" height="60" fill="url(#marbleGrad)" stroke="var(--svg-stroke)" stroke-width="1"/>
+                                <path d="M80 360 C80 320, 100 280, 140 270 L260 270 C300 280, 320 320, 320 360 C320 375, 80 375, 80 360 Z" fill="url(#marbleGrad)" stroke="var(--svg-stroke)" stroke-width="1.5"/>
+                                <path d="M170 270 L170 210 L230 210 L230 270 Z" fill="url(#marbleGrad)" stroke="var(--svg-stroke)" stroke-width="1"/>
+                                <path d="M150 170 C140 130, 150 70, 200 70 C250 70, 260 130, 250 170 C245 210, 230 220, 200 225 C170 220, 155 210, 150 170 Z" fill="url(#marbleGrad)" stroke="var(--svg-stroke-light)" stroke-width="1.5"/>
+                                <path d="M150 120 C135 150, 145 190, 160 210" fill="none" stroke="var(--svg-stroke-light)" stroke-width="1" stroke-dasharray="3 3"/>
+                                <path d="M250 120 C265 150, 255 190, 240 210" fill="none" stroke="var(--svg-stroke-light)" stroke-width="1" stroke-dasharray="3 3"/>
+                                <path d="M170 200 C180 225, 220 225, 230 200" fill="none" stroke="var(--svg-stroke-light)" stroke-width="1.5"/>
+                                <path d="M180 215 C190 235, 210 235, 220 215" fill="none" stroke="var(--svg-stroke)" stroke-width="1"/>
+                                <g transform="translate(200, 315) scale(0.9)" filter="url(#goldGlow)">
+                                    <path d="M0 -20 C-15 -35, -30 -20, -30 0 C-30 15, -15 25, 0 40 C15 25, 30 15, 30 0 C30 -20, 15 -35, 0 -20 Z" fill="url(#goldHeartGrad)"/>
+                                    <path d="M-10 -15 L2 -3 L-5 10 L8 22" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="round" opacity="0.65"/>
+                                    <path d="M12 -22 L5 -12 L12 0 L6 15" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                                    <path d="M-18 -5 L-8 0 L-12 12" fill="none" stroke="#000000" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+                                    <path d="M2 -3 L-5 10 L8 22" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.8"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="pedestal-plate"></div>
+                        <div class="pedestal-shadow"></div>
+                    </div>
+                </div>
+
+                <!-- Right Content: Find Lesson Thumbnail Carousel -->
+                <div class="hero-right">
+                    <div class="lesson-carousel-title">
+                        <button class="carousel-arrow prev" aria-label="Previous Lesson">❮</button>
+                        <span>Find Lesson</span>
+                        <button class="carousel-arrow next" aria-label="Next Lesson">❯</button>
+                    </div>
+                    
+                    <div class="lesson-thumbnails">
+                        <div class="thumb-card active" data-philosopher="epictetus">
+                            <div class="thumb-img-wrapper">
+                                <img src="assets/images/philosopher_epictetus_clean_v3.png" alt="Epictetus" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                                <div class="image-placeholder thumb-avatar-placeholder">E</div>
+                            </div>
+                            <div class="thumb-text">
+                                <span class="thumb-name">Epictetus</span>
+                                <span class="thumb-subtitle">Lesson</span>
+                            </div>
+                        </div>
+                        <div class="thumb-card" data-philosopher="chrysippus">
+                            <div class="thumb-img-wrapper">
+                                <img src="assets/images/philosopher_chrysippus_clean_v3.png" alt="Chrysippus" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                                <div class="image-placeholder thumb-avatar-placeholder">C</div>
+                            </div>
+                            <div class="thumb-text">
+                                <span class="thumb-name">Chrysippus</span>
+                                <span class="thumb-subtitle">Lesson</span>
+                            </div>
+                        </div>
+                        <div class="thumb-card" data-philosopher="zeno">
+                            <div class="thumb-img-wrapper">
+                                <img src="assets/images/philosopher_zeno_clean_v3.png" alt="Zeno" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                                <div class="image-placeholder thumb-avatar-placeholder">Z</div>
+                            </div>
+                            <div class="thumb-text">
+                                <span class="thumb-name">Zeno</span>
+                                <span class="thumb-subtitle">Lesson</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Footer -->
+            <div class="hero-footer">
+                <div class="hero-footer-left">
+                    <span class="tagline">Stoicism</span>
+                </div>
+                <div class="hero-footer-right">
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Contact"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+                        <a href="#" class="social-icon" aria-label="Twitter"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    </div>
+                    <a href="#exports" class="btn-exports-outline">Exports</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Philosophers Section -->
+        <section id="popular">
+            <div class="rotated-indicator left-indicator">Popular Philosophers</div>
+            <div class="section-arc-container">
+                <!-- SVG Arc Line -->
+                <svg class="arc-line-svg" viewBox="0 0 1000 200">
+                    <path d="M 100 180 Q 500 20 900 180" fill="none" stroke="url(#gold-gradient-arc)" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <defs>
+                        <linearGradient id="gold-gradient-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(255, 255, 255, 0.01)" />
+                            <stop offset="50%" stop-color="rgba(212, 175, 55, 0.25)" />
+                            <stop offset="100%" stop-color="rgba(255, 255, 255, 0.01)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            
+            <div class="philosophers-carousel">
+                <button class="carousel-control-btn prev-btn" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                
+                <div class="philosophers-grid">
+                    <div class="philosopher-card" data-index="0" data-philosopher="epictetus">
+                        <div class="card-img-wrapper">
+                            <img src="assets/images/philosopher_epictetus_clean_v3.png" alt="Epictetus bust" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                            <div class="image-placeholder card-avatar-placeholder">E</div>
+                        </div>
+                        <h3 class="philosopher-name">Epictetus</h3>
+                        <span class="philosopher-lesson">Lesson</span>
+                    </div>
+                    <div class="philosopher-card active" data-index="1" data-philosopher="chrysippus">
+                        <div class="card-img-wrapper">
+                            <img src="assets/images/philosopher_chrysippus_clean_v3.png" alt="Chrysippus bust" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                            <div class="image-placeholder card-avatar-placeholder">C</div>
+                        </div>
+                        <h3 class="philosopher-name">Chrysippus</h3>
+                        <span class="philosopher-lesson">Lesson</span>
+                    </div>
+                    <div class="philosopher-card" data-index="2" data-philosopher="zeno">
+                        <div class="card-img-wrapper">
+                            <img src="assets/images/philosopher_zeno_clean_v3.png" alt="Zeno bust" class="lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                            <div class="image-placeholder card-avatar-placeholder">Z</div>
+                        </div>
+                        <h3 class="philosopher-name">Zeno</h3>
+                        <span class="philosopher-lesson">Lesson</span>
+                    </div>
+                </div>
+
+                <button class="carousel-control-btn next-btn" aria-label="Next">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- General Practices Section -->
+        <section id="practices">
+            <div class="rotated-indicator left-indicator">Philosophy 101</div>
+            
+            <div class="practices-header">
+                <h2 class="section-title">General Practices</h2>
+                <!-- Tabs -->
+                <div class="practices-tabs">
+                    <button class="tab-btn active" data-tab="logic">Logic</button>
+                    <button class="tab-btn" data-tab="epistemology">Epistemology</button>
+                    <button class="tab-btn" data-tab="physics">Physics</button>
+                    <button class="tab-btn" data-tab="ethics">Ethics</button>
+                    <button class="tab-btn" data-tab="passion">Passion</button>
+                    <button class="tab-btn" data-tab="love">Love & Life</button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="practices-content-container">
+                <!-- Left panel: Theory intro -->
+                <div class="practices-left panel-content" id="theory-intro">
+                    <h3 class="panel-heading">Logic Theory</h3>
+                    <p class="panel-text" id="theory-description">
+                        Stoic logic is a system of proposition logic developed by Chrysippus and other Stoics. It focuses on the study of syllogisms, statements, and semantic relations to achieve clear, objective reasoning about the cosmos. It is a philosophy of personal virtue ethics informed by its system of logic.
+                    </p>
+                    <a href="#exports" class="btn-exports-outline">Exports</a>
+                </div>
+
+                <!-- Center panel: Gold Bust -->
+                <div class="practices-center">
+                    <div class="gold-bust-glow"></div>
+                    <div class="gold-bust-wrapper">
+                        <img src="assets/images/practice_gold_bust_clean.png" alt="Golden Stoic Bust" class="gold-bust-img lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                        <div class="image-placeholder gold-bust-placeholder">
+                            <div class="gold-placeholder-glow"></div>
+                            <svg viewBox="0 0 400 500" class="bust-svg-gold">
+                                <defs>
+                                    <linearGradient id="goldBustGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ffe066" stop-opacity="0.35" />
+                                        <stop offset="35%" stop-color="#f59f00" stop-opacity="0.25" />
+                                        <stop offset="70%" stop-color="#b8860b" stop-opacity="0.15" />
+                                        <stop offset="100%" stop-color="#5c3e00" stop-opacity="0.05" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M120 420 L280 420 L260 470 L140 470 Z" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.2)" stroke-width="1.5"/>
+                                <ellipse cx="200" cy="420" rx="90" ry="15" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.25)" stroke-width="1.5"/>
+                                <rect x="180" y="360" width="40" height="60" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+                                <path d="M80 360 C80 320, 100 280, 140 270 L260 270 C300 280, 320 320, 320 360 C320 375, 80 375, 80 360 Z" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.2)" stroke-width="1.5"/>
+                                <path d="M170 270 L170 210 L230 210 L230 270 Z" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.12)" stroke-width="1"/>
+                                <path d="M150 170 C140 130, 150 70, 200 70 C250 70, 260 130, 250 170 C245 210, 230 220, 200 225 C170 220, 155 210, 150 170 Z" fill="url(#goldBustGrad)" stroke="rgba(212,175,55,0.25)" stroke-width="1.5"/>
+                                <path d="M150 120 C135 150, 145 190, 160 210" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+                                <path d="M250 120 C265 150, 255 190, 240 210" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="1" stroke-dasharray="3 3"/>
+                                <path d="M170 200 C180 225, 220 225, 230 200" fill="none" stroke="rgba(212,175,55,0.3)" stroke-width="1.5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right panel: Specific practices slider -->
+                <div class="practices-right panel-content" id="practice-details">
+                    <div class="slider-nav">
+                        <button class="slider-arrow prev" aria-label="Previous Detail">❮</button>
+                        <span class="slider-title" id="practice-number-title">Logic #1</span>
+                        <button class="slider-arrow next" aria-label="Next Detail">❯</button>
+                    </div>
+                    <div class="slider-dots" id="practice-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <div class="slide-content">
+                        <h4 class="slide-heading" id="practice-heading">Logic #1</h4>
+                        <p class="slide-text" id="practice-text">
+                            Stoicism is a school of Hellenistic philosophy founded by Zeno of Citium in Athens in the early 3rd century BC. It is a philosophy of personal virtue ethics informed by its system of logic and its views on the natural world.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why We Need Philosophy Section -->
+        <section id="why-philosophy">
+            <div class="rotated-indicator left-indicator">Questions</div>
+            
+            <div class="why-container">
+                <!-- Left: Huge muscular statue bust -->
+                <div class="why-left">
+                    <div class="side-statue-wrapper">
+                        <img src="assets/images/why_philosophy_statue_clean.png" alt="Muscle Philosopher Torso Statue" class="side-statue-img lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                        <div class="image-placeholder side-statue-placeholder">
+                            <svg viewBox="0 0 500 800" class="side-statue-svg">
+                                <defs>
+                                    <linearGradient id="torsoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#e2e8f0" stop-opacity="0.25" />
+                                        <stop offset="50%" stop-color="#94a3b8" stop-opacity="0.12" />
+                                        <stop offset="100%" stop-color="#475569" stop-opacity="0.02" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="150" y="720" width="200" height="80" fill="url(#torsoGrad)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                                <path d="M100 720 L400 720 L350 750 L150 750 Z" fill="url(#torsoGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+                                <path d="M180 500 C160 550, 150 630, 160 720 L340 720 C350 630, 340 550, 320 500 Z" fill="url(#torsoGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+                                <path d="M150 200 C150 300, 170 450, 180 500 L320 500 C330 450, 350 300, 350 200 Z" fill="url(#torsoGrad)" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+                                <path d="M165 260 C200 270, 230 290, 250 290 C270 290, 300 270, 335 260" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                                <path d="M180 340 C200 350, 230 365, 250 365 C270 365, 300 350, 320 340" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+                                <path d="M250 365 L250 500" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+                                <path d="M210 395 C220 395, 240 400, 250 400 C260 400, 280 395, 290 395" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <path d="M205 435 C215 435, 240 440, 250 440 C260 440, 285 435, 295 435" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                                <path d="M200 475 C210 475, 240 480, 250 480 C260 480, 290 475, 300 475" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <div class="statue-overlay"></div>
+                    </div>
+                </div>
+
+                <!-- Right: Content -->
+                <div class="why-right">
+                    <h2 class="why-title">Why we need philosophy</h2>
+                    <p class="why-description">
+                        Stoicism is a school of Hellenistic philosophy founded by Zeno of Citium in Athens in the early 3rd century BC. It is a philosophy of personal virtue ethics informed by its system of logic and its views on the natural world. It helps us navigate chaos, overcome negative emotions, and find inner peace.
+                    </p>
+                    
+                    <button class="watch-video-btn" id="open-video-btn">
+                        <span class="play-icon-wrapper">
+                            <svg class="play-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                        </span>
+                        Watch Video
+                    </button>
+
+                    <div class="action-buttons">
+                        <a href="#school" class="btn-school">School</a>
+                        <a href="#explore" class="btn-explore">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="footer-left">
+            <a href="#exports" class="btn-exports-outline">Exports</a>
+            <div class="footer-socials">
+                <a href="#" class="social-icon" aria-label="Contact"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+                <a href="#" class="social-icon" aria-label="Twitter"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-center">
+            <span class="copyright">© 2026 Stoicism. All rights reserved.</span>
+        </div>
+        <div class="footer-right">
+            <nav class="footer-links">
+                <a href="#hero">Home</a>
+                <a href="#popular">About</a>
+                <a href="#practices">Lessons</a>
+                <a href="#why-philosophy">Practices</a>
+            </nav>
+            <div class="footer-logo">
+                <div class="logo-wrapper">
+                    <img src="assets/images/stoic_logo.png" alt="Stoicism Logo" class="footer-logo-img lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
+                    <div class="image-placeholder logo-placeholder">
+                        <svg viewBox="0 0 100 100" class="logo-svg">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="1.5 2"/>
+                            <path d="M36 34 C36 24, 64 24, 64 36 C64 48, 36 50, 36 62 C36 74, 64 74, 64 64" fill="none" stroke="#d4af37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <text x="50" y="94" font-family="'Cinzel', serif" font-size="10" fill="#d4af37" text-anchor="middle" letter-spacing="1">101</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="video-modal" role="dialog" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="close-modal-btn" id="close-video-btn" aria-label="Close video">&times;</button>
+            <div class="video-wrapper">
+                <div class="video-placeholder">
+                    <div class="video-bg-glow"></div>
+                    <div class="video-inner-content">
+                        <h3 class="video-placeholder-title">The Art of Stoicism</h3>
+                        <p class="video-placeholder-subtitle">A Visual Journey Into Mindfulness & Logic</p>
+                        <div class="play-pulse">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP CDN Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Script -->
+    <script src="script_v3.js"></script>
+</body>
+</html>
