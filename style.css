@@ -457,17 +457,7 @@ button {
 }
 
 .statue-glow {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.16) 0%, rgba(212, 175, 55, 0) 70%);
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    filter: blur(40px);
-    pointer-events: none;
-    mix-blend-mode: screen;
+    display: none;
 }
 
 .main-bust-container {
@@ -769,7 +759,7 @@ button {
 }
 
 .philosopher-card.active .card-img-wrapper img {
-    filter: drop-shadow(0 15px 35px var(--gold-glow)) brightness(1.05);
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.65)) brightness(1.03);
 }
 
 .card-img-wrapper {
@@ -911,18 +901,7 @@ button {
 }
 
 .gold-bust-glow {
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0) 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    pointer-events: none;
-    filter: blur(25px);
-    mix-blend-mode: screen;
-    transition: background 0.8s ease;
+    display: none;
 }
 
 .gold-bust-wrapper {
