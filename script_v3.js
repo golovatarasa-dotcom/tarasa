@@ -32,29 +32,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    /* --- Intro Splash Screen with Lottie --- */
+    /* --- Intro Splash Screen with Logo --- */
     const introSplash = document.getElementById('intro-splash');
+    const splashLogo = document.getElementById('splash-logo-img');
+    const logoGlow = document.querySelector('.logo-glow');
     
     if (introSplash) {
-        try {
-            if (typeof lottie !== 'undefined') {
-                lottie.loadAnimation({
-                    container: document.getElementById('lottie-container'),
-                    renderer: 'svg',
-                    loop: false,
-                    autoplay: true,
-                    path: 'assets/lottie/intro.json?v=1.3'
-                });
-            } else {
-                console.warn('Lottie player is not defined. Skipping animation.');
-            }
-        } catch (e) {
-            console.error('Failed to initialize Lottie animation:', e);
-        }
-
         // Disable scrolling during splash
         document.body.style.overflow = 'hidden';
 
+        // Animate Logo Image (Fade in and scale up)
+        if (splashLogo) {
+            gsap.to(splashLogo, {
+                opacity: 1,
+                scale: 1,
+                duration: 1.4,
+                ease: 'power4.out',
+                delay: 0.2
+            });
+        }
+
+        // Animate expanding golden glow wave
+        if (logoGlow) {
+            gsap.timeline()
+                .to(logoGlow, {
+                    opacity: 0.8,
+                    scale: 1.2,
+                    duration: 0.6,
+                    ease: 'power2.out',
+                    delay: 0.3
+                })
+                .to(logoGlow, {
+                    opacity: 0,
+                    scale: 2.2,
+                    duration: 0.9,
+                    ease: 'power1.out'
+                });
+        }
+
+        // Remove splash and restore scroll
         setTimeout(() => {
             introSplash.classList.add('fade-out');
             
