@@ -1003,30 +1003,30 @@ button {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.15fr 1fr;
-    align-items: stretch;
+    align-items: center;
     gap: 6rem;
 }
 
 /* Left side torso statue */
 .why-left {
     position: relative;
-    min-height: 700px;
-    overflow: visible;
+    height: 640px;
 }
 
 .side-statue-wrapper {
     position: absolute;
-    bottom: -10rem;
+    bottom: -160px;
     left: -15%;
     width: 130%;
+    height: 800px;
     z-index: 3;
-    overflow: visible;
 }
 
 .side-statue-img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom left;
     filter: brightness(0.9) contrast(1.05);
 }
 
