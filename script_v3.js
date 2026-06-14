@@ -2,6 +2,120 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register GSAP ScrollTrigger Plugin
     gsap.registerPlugin(ScrollTrigger);
 
+    /* --- Top Reading / Loading Progress Bar --- */
+    const progressBar = document.getElementById('top-progress-bar');
+    if (progressBar) {
+        // Loading animation during splash screen
+        gsap.to(progressBar, {
+            width: '100%',
+            duration: 2.1,
+            ease: 'power2.out',
+            onComplete: () => {
+                // Bind to scroll position after splash finishes
+                gsap.set(progressBar, { width: '0%' });
+                gsap.to(progressBar, {
+                    width: '100%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: 'body',
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: true
+                    }
+                });
+            }
+        });
+    }
+
+    /* --- Cursor Spotlight Glow Coordinates --- */
+    document.addEventListener('mousemove', (e) => {
+        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    });
+
+    /* --- Premium Custom Cursor Tracking & Interactive Scaling --- */
+    const cursorDot = document.querySelector('.custom-cursor-dot');
+    const cursorRing = document.querySelector('.custom-cursor-ring');
+    
+    if (cursorDot && cursorRing) {
+        let mouseX = -100;
+        let mouseY = -100;
+        let ringX = -100;
+        let ringY = -100;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Move dot instantly
+            gsap.set(cursorDot, { x: mouseX, y: mouseY });
+        });
+        
+        // Smooth inertia lag on the outer ring using ticker
+        gsap.ticker.add(() => {
+            const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio());
+            ringX += (mouseX - ringX) * dt;
+            ringY += (mouseY - ringY) * dt;
+            
+            gsap.set(cursorRing, { x: ringX, y: ringY });
+        });
+        
+        // Hover reactions
+        const interactiveSelector = 'a, button, [role="button"], .thumb-card, .philosopher-card, .slider-arrow, .carousel-arrow, .tab-btn';
+        
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(interactiveSelector)) {
+                document.body.classList.add('cursor-hover');
+            }
+        });
+        
+        document.addEventListener('mouseout', (e) => {
+            if (!e.target.closest(interactiveSelector)) {
+                document.body.classList.remove('cursor-hover');
+            }
+        });
+    }
+
+    /* --- Statue Scroll Parallax (GSAP ScrollTrigger) --- */
+    gsap.to('.main-bust-img', {
+        y: 45,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
+    });
+
+    gsap.fromTo('.gold-bust-img', 
+        { y: -30 },
+        {
+            y: 35,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#practices',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        }
+    );
+
+    gsap.fromTo('.side-statue-img', 
+        { y: -40 },
+        {
+            y: 40,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#why-philosophy',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true
+            }
+        }
+    );
+
     /* --- Robust Image Lazy-Loading Handler --- */
     const lazyImages = document.querySelectorAll('img.lazy-image');
     lazyImages.forEach(img => {
@@ -421,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --- Smooth Scrolling for Navigation --- */
-    const navLinks = document.querySelectorAll('.nav-link, .footer-links a');
+    const navLinks = document.querySelectorAll('.nav-link, .footer-links a, .btn-school, .btn-explore, .read-more-btn, .mobile-nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -462,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const philosopherData = {
         marcus: {
             title: 'Eudaimonia',
-            mainDesc: "Stoicism is a school of Hellenistic philosophy, founded by Zeno of Citium in Athens in the early 3rd century BC. It is a philosophy of personal virtue ethics informed by its system of logic and its views on the natural world.",
+            mainDesc: "Marcus Aurelius, the Roman Emperor and author of Meditations, practiced Stoicism as a tool for leadership and self-discipline. He viewed the mind as an 'Inner Citadel' that remains invulnerable to external chaos.",
             subDesc: "Virtue is the only good for human beings, and those external things, such as health, wealth, and pleasure, are not good or bad in themselves (adiaphora), but have value as material for virtue to act upon.",
             src: 'assets/images/hero_marcus_bust_clean.png'
         },
@@ -901,6 +1015,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeVideoBtn = document.getElementById('close-video-btn');
     const videoModal = document.getElementById('video-modal');
     const modalOverlay = videoModal.querySelector('.modal-overlay');
+    const videoWrapper = videoModal.querySelector('.video-wrapper');
+    const originalPlaceholder = videoWrapper.innerHTML;
 
     function openModal() {
         videoModal.classList.add('open');
@@ -912,6 +1028,9 @@ document.addEventListener('DOMContentLoaded', () => {
             { scale: 0.9, opacity: 0 },
             { scale: 1, opacity: 1, duration: 0.6, ease: 'power4.out' }
         );
+
+        // Inject YouTube iframe
+        videoWrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/R9pHObXE3pc?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
     }
 
     function closeModal() {
@@ -925,6 +1044,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoModal.classList.remove('open');
                 videoModal.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = ''; // Unlock background scrolling
+                
+                // Restore placeholder to stop video audio
+                videoWrapper.innerHTML = originalPlaceholder;
             }
         });
     }
@@ -938,6 +1060,57 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    /* --- Responsive Mobile Menu Toggle & Staggered Animations --- */
+    const gridMenuBtn = document.querySelector('.grid-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuBtn = document.querySelector('.close-menu-btn');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (gridMenuBtn && mobileMenu && closeMenuBtn) {
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            
+            // Staggered fade and slide in of link options
+            gsap.fromTo(mobileNavLinks, 
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
+            );
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        gridMenuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                closeMobileMenu();
+                
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const targetKey = targetId.substring(1);
+                        const trigger = sectionTriggers[targetKey];
+                        if (trigger) {
+                            window.scrollTo({
+                                top: trigger.start,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            targetEl.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                }
+            });
+        });
+    }
 
     /* --- Day/Night Mode Theme Toggle Logic --- */
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
