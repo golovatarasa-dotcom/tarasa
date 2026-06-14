@@ -1030,18 +1030,13 @@ body.light-theme .hero-bg-text {
     object-fit: contain;
     object-position: bottom left;
     filter: brightness(0.9) contrast(1.05);
+    /* Fade out the right edge of the image itself, leaving the background transparent */
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 95%);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 95%);
 }
 
 .statue-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Only fade to the right edge to blend into the content area — no bottom fade */
-    background: linear-gradient(to right, rgba(var(--overlay-color), 0) 45%, rgba(var(--overlay-color), 0.9) 100%);
-    pointer-events: none;
-    z-index: 4;
+    display: none;
 }
 
 /* Right side content */
