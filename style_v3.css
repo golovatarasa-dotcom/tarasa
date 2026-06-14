@@ -349,21 +349,31 @@ button {
 
 .hero-bg-text {
     position: absolute;
-    top: 40%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-heading-roman);
-    font-size: 15vw;
-    font-weight: 900;
-    letter-spacing: 0.12em;
-    color: rgba(248, 250, 252, 0.08);
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.03);
+    font-size: 16vw;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(148, 163, 184, 0.03) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
     user-select: none;
     pointer-events: none;
     z-index: 1;
     text-align: center;
     width: 100%;
 }
+
+body.light-theme .hero-bg-text {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: none;
+}
+
 
 .hero-container {
     width: 82%;
