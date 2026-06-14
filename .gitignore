@@ -1,3 +1,5 @@
 .vercel/
 .tempmediaStorage/
 node_modules/
+.agents/
+skills-lock.json
