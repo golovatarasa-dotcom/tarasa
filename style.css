@@ -1936,3 +1936,37 @@ body.light-theme .pedestal-shadow {
     z-index: 40;
     background-color: transparent;
 }
+
+/* --- Intro Splash Screen --- */
+#intro-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #030508; /* match dark theme bg */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+}
+
+body.light-theme #intro-splash {
+    background-color: #f7f6f2; /* match light theme bg */
+}
+
+#intro-splash.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#lottie-container {
+    width: 700px;
+    height: 350px;
+    max-width: 90%;
+    max-height: 90%;
+}
+

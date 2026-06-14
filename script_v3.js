@@ -32,8 +32,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /* --- Intro Splash Screen with Lottie --- */
+    const introSplash = document.getElementById('intro-splash');
+    
+    if (introSplash) {
+        lottie.loadAnimation({
+            container: document.getElementById('lottie-container'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            path: 'assets/lottie/intro.json'
+        });
+
+        // Disable scrolling during splash
+        document.body.style.overflow = 'hidden';
+
+        setTimeout(() => {
+            introSplash.classList.add('fade-out');
+            
+            const videoModal = document.getElementById('video-modal');
+            if (!videoModal || !videoModal.classList.contains('open')) {
+                document.body.style.overflow = '';
+            }
+            
+            // Start main site entrance animations
+            tlEntrance.play();
+        }, 2300);
+    }
+
     /* --- GSAP Initial Entrance Animations --- */
-    const tlEntrance = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    const tlEntrance = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
+
+    // Fallback: If no splash screen exists, play the entrance animations immediately
+    if (!introSplash) {
+        tlEntrance.play();
+    }
+
 
     // 1. Header fade down
     tlEntrance.from('#main-header', {
