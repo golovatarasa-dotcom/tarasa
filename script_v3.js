@@ -52,21 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Animate expanding golden glow wave
+        // Animate expanding golden glow wave (thin ring ripple)
         if (logoGlow) {
             gsap.timeline()
                 .to(logoGlow, {
-                    opacity: 0.9,
-                    scale: 1.5,
-                    duration: 0.7,
+                    opacity: 0.8,
+                    scale: 1.1,
+                    duration: 0.5,
                     ease: 'power2.out',
-                    delay: 0.2
+                    delay: 0.1
                 })
                 .to(logoGlow, {
                     opacity: 0,
-                    scale: 3.5,
-                    duration: 0.9,
-                    ease: 'power3.out'
+                    scale: 2.0,
+                    duration: 0.7,
+                    ease: 'power1.out'
                 });
         }
 
