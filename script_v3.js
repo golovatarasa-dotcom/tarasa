@@ -594,10 +594,8 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbCards.forEach((card, idx) => {
             if (idx === index) {
                 card.classList.add('active');
-                gsap.to(card, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
             } else {
                 card.classList.remove('active');
-                gsap.to(card, { opacity: 0.4, scale: 0.92, duration: 0.4, ease: 'power2.out' });
             }
         });
     }
