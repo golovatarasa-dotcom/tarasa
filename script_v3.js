@@ -350,9 +350,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Section snapping logic based on ScrollTrigger
+    // Section snapping logic based on active intercepts (Wheel, Touch, Key)
     let scrollPositions = [];
-    let lastScrollPosition = window.scrollY;
+    let currentSectionIndex = 0;
+    let isTransitioning = false;
 
     ScrollTrigger.addEventListener('refresh', () => {
         scrollPositions = stackingPanels.map(panel => {
@@ -361,61 +362,117 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    ScrollTrigger.create({
-        start: 0,
-        end: 'max',
-        snap: {
-            snapTo: (value) => {
-                const totalScroll = ScrollTrigger.maxScroll(window);
-                if (totalScroll <= 0 || scrollPositions.length === 0) return value;
-                
-                const currentScroll = window.scrollY;
-                const direction = currentScroll > lastScrollPosition ? 'down' : 'up';
-                lastScrollPosition = currentScroll;
+    function goToSection(index) {
+        if (index < 0 || index >= scrollPositions.length) return;
+        isTransitioning = true;
+        currentSectionIndex = index;
 
-                // Find which section we started from
-                let currentIndex = 0;
-                for (let i = 0; i < scrollPositions.length; i++) {
-                    if (currentScroll >= scrollPositions[i] - 15) {
-                        currentIndex = i;
-                    }
-                }
-
-                // Snap down to the next section
-                if (direction === 'down' && currentIndex < scrollPositions.length - 1) {
-                    if (currentScroll > scrollPositions[currentIndex] + 15) {
-                        return scrollPositions[currentIndex + 1] / totalScroll;
-                    }
-                } 
-                // Snap up to the previous section
-                else if (direction === 'up' && currentIndex > 0) {
-                    if (currentScroll < scrollPositions[currentIndex] - 15) {
-                        return scrollPositions[currentIndex - 1] / totalScroll;
-                    }
-                }
-
-                // Default fallback: snap to nearest section
-                let closestPos = scrollPositions[0];
-                let minDiff = Math.abs(currentScroll - closestPos);
-                
-                scrollPositions.forEach(pos => {
-                    const diff = Math.abs(currentScroll - pos);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        closestPos = pos;
-                    }
-                });
-                
-                return closestPos / totalScroll;
-            },
-            duration: { min: 0.35, max: 0.65 },
-            delay: 0.08,
+        const scrollObj = { y: window.scrollY };
+        gsap.to(scrollObj, {
+            y: scrollPositions[index],
+            duration: 0.75,
             ease: 'power3.out',
+            onUpdate: () => {
+                window.scrollTo(0, scrollObj.y);
+            },
             onComplete: () => {
-                lastScrollPosition = window.scrollY;
+                // Prevent trackpad inertial double triggers
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 200);
             }
+        });
+    }
+
+    // Keep currentSectionIndex updated on manual scrolls
+    window.addEventListener('scroll', () => {
+        if (!isTransitioning && scrollPositions.length > 0) {
+            const currentScroll = window.scrollY;
+            let closestIndex = 0;
+            let minDiff = Math.abs(currentScroll - scrollPositions[0]);
+            
+            for (let i = 1; i < scrollPositions.length; i++) {
+                const diff = Math.abs(currentScroll - scrollPositions[i]);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestIndex = i;
+                }
+            }
+            currentSectionIndex = closestIndex;
         }
     });
+
+    // Intercept mouse wheel
+    window.addEventListener('wheel', (e) => {
+        if (isTransitioning || scrollPositions.length === 0) {
+            if (isTransitioning) e.preventDefault();
+            return;
+        }
+        
+        const delta = e.deltaY;
+        if (Math.abs(delta) < 15) return;
+        
+        if (delta > 0) {
+            if (currentSectionIndex < scrollPositions.length - 1) {
+                e.preventDefault();
+                goToSection(currentSectionIndex + 1);
+            }
+        } else {
+            if (currentSectionIndex > 0) {
+                e.preventDefault();
+                goToSection(currentSectionIndex - 1);
+            }
+        }
+    }, { passive: false });
+
+    // Intercept touch swipe (mobile/trackpad)
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (isTransitioning || scrollPositions.length === 0) {
+            if (isTransitioning) e.preventDefault();
+            return;
+        }
+        
+        const touchEndY = e.touches[0].clientY;
+        const diff = touchStartY - touchEndY;
+        if (Math.abs(diff) < 40) return;
+        
+        if (diff > 0) {
+            if (currentSectionIndex < scrollPositions.length - 1) {
+                e.preventDefault();
+                goToSection(currentSectionIndex + 1);
+            }
+        } else {
+            if (currentSectionIndex > 0) {
+                e.preventDefault();
+                goToSection(currentSectionIndex - 1);
+            }
+        }
+    }, { passive: false });
+
+    // Intercept navigation keys
+    window.addEventListener('keydown', (e) => {
+        if (isTransitioning || scrollPositions.length === 0) {
+            if (isTransitioning) e.preventDefault();
+            return;
+        }
+        
+        if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+            if (currentSectionIndex < scrollPositions.length - 1) {
+                e.preventDefault();
+                goToSection(currentSectionIndex + 1);
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            if (currentSectionIndex > 0) {
+                e.preventDefault();
+                goToSection(currentSectionIndex - 1);
+            }
+        }
+    }, { passive: false });
 
     // Update active nav link on scroll based on stable ScrollTrigger start values
     function checkActiveSection() {
