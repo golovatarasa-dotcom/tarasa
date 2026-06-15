@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style_v3.css?v=2.1">
+    <link rel="stylesheet" href="style_v3.css?v=2.2">
 </head>
 <body>
 
@@ -43,16 +43,24 @@
     <!-- Header Navigation -->
     <header id="main-header">
         <div class="header-logo">
-            <div class="logo-wrapper">
-                <img src="assets/images/stoic_logo.png" alt="Stoicism Logo" class="logo-img lazy-image" onload="this.classList.add('loaded')" onerror="this.classList.add('error')">
-                <div class="image-placeholder logo-placeholder">
-                    <svg viewBox="0 0 100 100" class="logo-svg">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="1.5 2"/>
-                        <path d="M36 34 C36 24, 64 24, 64 36 C64 48, 36 50, 36 62 C36 74, 64 74, 64 64" fill="none" stroke="#d4af37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <text x="50" y="94" font-family="'Cinzel', serif" font-size="10" fill="#d4af37" text-anchor="middle" letter-spacing="1">101</text>
-                    </svg>
-                </div>
-            </div>
+            <svg viewBox="0 0 100 100" class="logo-svg-new">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-dasharray="1.5 2.5" />
+                <!-- Column Base -->
+                <path d="M 30 75 L 70 75" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" />
+                <path d="M 34 70 L 66 70" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" />
+                <!-- Column Shaft (Vertical lines) -->
+                <path d="M 40 32 L 40 65" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M 45 32 L 45 65" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M 50 32 L 50 65" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M 55 32 L 55 65" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M 60 32 L 60 65" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" />
+                <!-- Column Capital (Top) -->
+                <path d="M 34 27 L 66 27" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" />
+                <path d="M 38 32 L 62 32" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" />
+                <!-- Volutes -->
+                <circle cx="37" cy="29" r="2.2" fill="none" stroke="var(--gold)" stroke-width="2" />
+                <circle cx="63" cy="29" r="2.2" fill="none" stroke="var(--gold)" stroke-width="2" />
+            </svg>
             <span class="logo-text">STOICISM 101</span>
         </div>
         <nav class="nav-links">
@@ -452,7 +460,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <!-- Script -->
-    <script src="script_v3.js?v=2.1"></script>
+    <script src="script_v3.js?v=2.2"></script>
     <!-- Sticky Bottom Bar — lives in body so position:fixed always works -->
     <div class="hero-footer">
         <div class="hero-footer-left">

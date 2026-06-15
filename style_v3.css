@@ -2194,4 +2194,18 @@ body.light-theme .mobile-menu-overlay {
     }
 }
 
+/* --- New Custom Vector SVG Logo styling & hover interaction --- */
+.logo-svg-new {
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header-logo:hover .logo-svg-new {
+    transform: rotate(15deg) scale(1.08);
+}
+
+
 
