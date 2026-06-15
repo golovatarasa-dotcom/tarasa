@@ -194,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove splash and restore scroll
         setTimeout(() => {
             introSplash.classList.add('fade-out');
+            document.body.classList.remove('entrance-animating');
             
             const videoModal = document.getElementById('video-modal');
             if (!videoModal || !videoModal.classList.contains('open')) {
@@ -206,21 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* --- GSAP Initial Entrance Animations --- */
-    const tlEntrance = gsap.timeline({ 
-        paused: true, 
-        defaults: { ease: 'power4.out' },
-        onComplete: () => {
-            document.body.classList.remove('entrance-animating');
-        }
-    });
-
-    // Safety fallback: ensure cursor is restored after 6.5s under any conditions
-    setTimeout(() => {
-        document.body.classList.remove('entrance-animating');
-    }, 6500);
+    const tlEntrance = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
 
     // Fallback: If no splash screen exists, play the entrance animations immediately
     if (!introSplash) {
+        document.body.classList.remove('entrance-animating');
         tlEntrance.play();
     }
 
