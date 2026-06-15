@@ -350,6 +350,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Section snapping logic based on ScrollTrigger
+    let scrollPositions = [];
+    let lastScrollPosition = window.scrollY;
+
+    ScrollTrigger.addEventListener('refresh', () => {
+        scrollPositions = stackingPanels.map(panel => {
+            const trigger = sectionTriggers[panel.id];
+            return trigger ? trigger.start : 0;
+        });
+    });
+
+    ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        snap: {
+            snapTo: (value) => {
+                const totalScroll = ScrollTrigger.maxScroll(window);
+                if (totalScroll <= 0 || scrollPositions.length === 0) return value;
+                
+                const currentScroll = window.scrollY;
+                const direction = currentScroll > lastScrollPosition ? 'down' : 'up';
+                lastScrollPosition = currentScroll;
+
+                // Find which section we started from
+                let currentIndex = 0;
+                for (let i = 0; i < scrollPositions.length; i++) {
+                    if (currentScroll >= scrollPositions[i] - 15) {
+                        currentIndex = i;
+                    }
+                }
+
+                // Snap down to the next section
+                if (direction === 'down' && currentIndex < scrollPositions.length - 1) {
+                    if (currentScroll > scrollPositions[currentIndex] + 15) {
+                        return scrollPositions[currentIndex + 1] / totalScroll;
+                    }
+                } 
+                // Snap up to the previous section
+                else if (direction === 'up' && currentIndex > 0) {
+                    if (currentScroll < scrollPositions[currentIndex] - 15) {
+                        return scrollPositions[currentIndex - 1] / totalScroll;
+                    }
+                }
+
+                // Default fallback: snap to nearest section
+                let closestPos = scrollPositions[0];
+                let minDiff = Math.abs(currentScroll - closestPos);
+                
+                scrollPositions.forEach(pos => {
+                    const diff = Math.abs(currentScroll - pos);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closestPos = pos;
+                    }
+                });
+                
+                return closestPos / totalScroll;
+            },
+            duration: { min: 0.35, max: 0.65 },
+            delay: 0.08,
+            ease: 'power3.out',
+            onComplete: () => {
+                lastScrollPosition = window.scrollY;
+            }
+        }
+    });
+
     // Update active nav link on scroll based on stable ScrollTrigger start values
     function checkActiveSection() {
         let current = 'hero';
