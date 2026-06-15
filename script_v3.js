@@ -211,13 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // 1. Header fade down
-    tlEntrance.from('#main-header', {
-        y: -100,
-        opacity: 0,
-        duration: 1.2
-    });
-
     // 2. Background massive text zoom-in and fade-in
     tlEntrance.from('.hero-bg-text', {
         scale: 1.15,
