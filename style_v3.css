@@ -2002,6 +2002,7 @@ body.light-theme .logo-glow {
         width: 8px;
         height: 8px;
         background-color: var(--gold);
+        border: 0px solid var(--gold);
         border-radius: 50%;
         position: fixed;
         top: 0;
@@ -2009,35 +2010,48 @@ body.light-theme .logo-glow {
         pointer-events: none;
         z-index: 9999999;
         transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: width 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                    height 0.25s cubic-bezier(0.25, 1, 0.5, 1), 
+                    background-color 0.25s ease, 
+                    border-color 0.25s ease,
+                    border-width 0.25s ease,
+                    opacity 0.15s ease;
+    }
+    
+    .custom-cursor-dot::after {
+        content: '';
+        width: 0px;
+        height: 0px;
+        background-color: var(--gold);
+        border-radius: 50%;
+        position: absolute;
+        transition: width 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+                    height 0.25s cubic-bezier(0.25, 1, 0.5, 1);
     }
     
     .custom-cursor-ring {
-        width: 32px;
-        height: 32px;
-        border: 1.5px solid var(--gold);
-        border-radius: 50%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        pointer-events: none;
-        z-index: 9999998;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s;
+        display: none !important;
     }
     
     /* Hover states for interactive elements */
     body.cursor-hover .custom-cursor-dot {
+        width: 44px;
+        height: 44px;
+        background-color: rgba(212, 175, 55, 0.06);
+        border: 1.5px solid var(--gold);
+    }
+    
+    body.cursor-hover .custom-cursor-dot::after {
         width: 4px;
         height: 4px;
-        background-color: #ffffff;
     }
     
     body.cursor-hover .custom-cursor-ring {
-        width: 48px;
-        height: 48px;
-        border-color: var(--gold);
-        background-color: rgba(212, 175, 55, 0.08);
+        display: none !important;
     }
 }
 

@@ -38,27 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const cursorDot = document.querySelector('.custom-cursor-dot');
         const cursorRing = document.querySelector('.custom-cursor-ring');
         
-        if (cursorDot && cursorRing) {
-            let mouseX = -100;
-            let mouseY = -100;
-            let ringX = -100;
-            let ringY = -100;
+        if (cursorDot) {
+            // Hide the redundant ring element if it exists in the DOM
+            if (cursorRing) {
+                cursorRing.style.display = 'none';
+            }
+            
+            let hasMoved = false;
             
             document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                
-                // Move dot instantly
-                gsap.set(cursorDot, { x: mouseX, y: mouseY });
+                if (!hasMoved) {
+                    gsap.set(cursorDot, { opacity: 1 });
+                    hasMoved = true;
+                }
+                // Move dot instantly for zero lag
+                gsap.set(cursorDot, { x: e.clientX, y: e.clientY });
             });
             
-            // Smooth inertia lag on the outer ring using ticker
-            gsap.ticker.add(() => {
-                const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio());
-                ringX += (mouseX - ringX) * dt;
-                ringY += (mouseY - ringY) * dt;
-                
-                gsap.set(cursorRing, { x: ringX, y: ringY });
+            // Fade cursor in/out when entering/leaving the page window
+            document.addEventListener('mouseleave', () => {
+                gsap.to(cursorDot, { opacity: 0, duration: 0.15 });
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                gsap.to(cursorDot, { opacity: 1, duration: 0.15 });
             });
             
             // Hover reactions
