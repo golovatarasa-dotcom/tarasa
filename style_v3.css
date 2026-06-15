@@ -1991,6 +1991,16 @@ body.light-theme .logo-glow {
 
 /* --- Premium Custom Cursor --- */
 @media (hover: hover) and (pointer: fine) {
+    body.entrance-animating,
+    body.entrance-animating * {
+        cursor: none !important;
+    }
+    
+    body.entrance-animating .custom-cursor-dot {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
     html, body {
         cursor: none;
     }
