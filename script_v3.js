@@ -474,6 +474,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { passive: false });
 
+    // Staggered Content Slide-out / Slide-in transitions
+    // 1. Transition: Hero -> Popular
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: '#hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
+    })
+    .to('.hero-left', { y: -120, opacity: 0, ease: 'none' }, 0)
+    .to('.hero-center', { y: -180, opacity: 0, ease: 'none' }, 0)
+    .to('.hero-bg-text', { y: -80, opacity: 0, ease: 'none' }, 0)
+    .to('#hero .rotated-indicator', { y: -60, opacity: 0, ease: 'none' }, 0)
+    .fromTo('.section-arc-container', { y: 120, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('.philosophers-carousel', { y: 180, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('#popular .rotated-indicator', { y: 60, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0);
+
+    // 2. Transition: Popular -> Practices
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: '#popular',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
+    })
+    .to('.section-arc-container', { y: -120, opacity: 0, ease: 'none' }, 0)
+    .to('.philosophers-carousel', { y: -180, opacity: 0, ease: 'none' }, 0)
+    .to('#popular .rotated-indicator', { y: -60, opacity: 0, ease: 'none' }, 0)
+    .fromTo('.practices-header', { y: 120, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('.practices-left', { y: 160, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('.practices-center', { y: 200, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('.practices-right', { y: 160, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('#practices .rotated-indicator', { y: 60, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0);
+
+    // 3. Transition: Practices -> Why Philosophy
+    gsap.timeline({
+        scrollTrigger: {
+            trigger: '#practices',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
+    })
+    .to('.practices-header', { y: -120, opacity: 0, ease: 'none' }, 0)
+    .to('.practices-left', { y: -160, opacity: 0, ease: 'none' }, 0)
+    .to('.practices-center', { y: -200, opacity: 0, ease: 'none' }, 0)
+    .to('.practices-right', { y: -160, opacity: 0, ease: 'none' }, 0)
+    .to('#practices .rotated-indicator', { y: -60, opacity: 0, ease: 'none' }, 0)
+    .fromTo('.why-container', { y: 180, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0)
+    .fromTo('#why-philosophy .rotated-indicator', { y: 60, opacity: 0 }, { y: 0, opacity: 1, ease: 'none' }, 0);
+
     // Update active nav link on scroll based on stable ScrollTrigger start values
     function checkActiveSection() {
         let current = 'hero';
