@@ -2,119 +2,123 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register GSAP ScrollTrigger Plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    /* --- Top Reading / Loading Progress Bar --- */
-    const progressBar = document.getElementById('top-progress-bar');
-    if (progressBar) {
-        // Loading animation during splash screen
-        gsap.to(progressBar, {
-            width: '100%',
-            duration: 2.1,
-            ease: 'power2.out',
-            onComplete: () => {
-                // Bind to scroll position after splash finishes
-                gsap.set(progressBar, { width: '0%' });
-                gsap.to(progressBar, {
-                    width: '100%',
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: 'body',
-                        start: 'top top',
-                        end: 'bottom bottom',
-                        scrub: true
-                    }
-                });
-            }
-        });
-    }
+    try {
+        /* --- Top Reading / Loading Progress Bar --- */
+        const progressBar = document.getElementById('top-progress-bar');
+        if (progressBar) {
+            // Loading animation during splash screen
+            gsap.to(progressBar, {
+                width: '100%',
+                duration: 2.1,
+                ease: 'power2.out',
+                onComplete: () => {
+                    // Bind to scroll position after splash finishes
+                    gsap.set(progressBar, { width: '0%' });
+                    gsap.to(progressBar, {
+                        width: '100%',
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: 'body',
+                            start: 'top top',
+                            end: 'bottom bottom',
+                            scrub: true
+                        }
+                    });
+                }
+            });
+        }
 
-    /* --- Cursor Spotlight Glow Coordinates --- */
-    document.addEventListener('mousemove', (e) => {
-        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-    });
-
-    /* --- Premium Custom Cursor Tracking & Interactive Scaling --- */
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    const cursorRing = document.querySelector('.custom-cursor-ring');
-    
-    if (cursorDot && cursorRing) {
-        let mouseX = -100;
-        let mouseY = -100;
-        let ringX = -100;
-        let ringY = -100;
-        
+        /* --- Cursor Spotlight Glow Coordinates --- */
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Move dot instantly
-            gsap.set(cursorDot, { x: mouseX, y: mouseY });
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
         });
+
+        /* --- Premium Custom Cursor Tracking & Interactive Scaling --- */
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        const cursorRing = document.querySelector('.custom-cursor-ring');
         
-        // Smooth inertia lag on the outer ring using ticker
-        gsap.ticker.add(() => {
-            const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio());
-            ringX += (mouseX - ringX) * dt;
-            ringY += (mouseY - ringY) * dt;
+        if (cursorDot && cursorRing) {
+            let mouseX = -100;
+            let mouseY = -100;
+            let ringX = -100;
+            let ringY = -100;
             
-            gsap.set(cursorRing, { x: ringX, y: ringY });
-        });
-        
-        // Hover reactions
-        const interactiveSelector = 'a, button, [role="button"], .thumb-card, .philosopher-card, .slider-arrow, .carousel-arrow, .tab-btn';
-        
-        document.addEventListener('mouseover', (e) => {
-            if (e.target.closest(interactiveSelector)) {
-                document.body.classList.add('cursor-hover');
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                // Move dot instantly
+                gsap.set(cursorDot, { x: mouseX, y: mouseY });
+            });
+            
+            // Smooth inertia lag on the outer ring using ticker
+            gsap.ticker.add(() => {
+                const dt = 1.0 - Math.pow(1.0 - 0.15, gsap.ticker.deltaRatio());
+                ringX += (mouseX - ringX) * dt;
+                ringY += (mouseY - ringY) * dt;
+                
+                gsap.set(cursorRing, { x: ringX, y: ringY });
+            });
+            
+            // Hover reactions
+            const interactiveSelector = 'a, button, [role="button"], .thumb-card, .philosopher-card, .slider-arrow, .carousel-arrow, .tab-btn';
+            
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest(interactiveSelector)) {
+                    document.body.classList.add('cursor-hover');
+                }
+            });
+            
+            document.addEventListener('mouseout', (e) => {
+                if (!e.target.closest(interactiveSelector)) {
+                    document.body.classList.remove('cursor-hover');
+                }
+            });
+        }
+
+        /* --- Statue Scroll Parallax (GSAP ScrollTrigger) --- */
+        gsap.to('.main-bust-img', {
+            y: 45,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
             }
         });
-        
-        document.addEventListener('mouseout', (e) => {
-            if (!e.target.closest(interactiveSelector)) {
-                document.body.classList.remove('cursor-hover');
+
+        gsap.fromTo('.gold-bust-img', 
+            { y: -30 },
+            {
+                y: 35,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#practices',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
             }
-        });
+        );
+
+        gsap.fromTo('.side-statue-img', 
+            { y: -40 },
+            {
+                y: 40,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#why-philosophy',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            }
+        );
+    } catch (err) {
+        console.error("Error initializing custom scroll components:", err);
     }
-
-    /* --- Statue Scroll Parallax (GSAP ScrollTrigger) --- */
-    gsap.to('.main-bust-img', {
-        y: 45,
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-        }
-    });
-
-    gsap.fromTo('.gold-bust-img', 
-        { y: -30 },
-        {
-            y: 35,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#practices',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        }
-    );
-
-    gsap.fromTo('.side-statue-img', 
-        { y: -40 },
-        {
-            y: 40,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#why-philosophy',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        }
-    );
 
     /* --- Robust Image Lazy-Loading Handler --- */
     const lazyImages = document.querySelectorAll('img.lazy-image');
@@ -1011,52 +1015,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* --- Video Modal Triggers --- */
+    /* --- Video Modal Triggers --- */
     const openVideoBtn = document.getElementById('open-video-btn');
     const closeVideoBtn = document.getElementById('close-video-btn');
     const videoModal = document.getElementById('video-modal');
-    const modalOverlay = videoModal.querySelector('.modal-overlay');
-    const videoWrapper = videoModal.querySelector('.video-wrapper');
-    const originalPlaceholder = videoWrapper.innerHTML;
+    const modalOverlay = videoModal ? videoModal.querySelector('.modal-overlay') : null;
+    const videoWrapper = videoModal ? videoModal.querySelector('.video-wrapper') : null;
+    const originalPlaceholder = videoWrapper ? videoWrapper.innerHTML : '';
 
     function openModal() {
+        if (!videoModal) return;
         videoModal.classList.add('open');
         videoModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden'; // Lock background scrolling
         
         // Modal entrance animation
-        gsap.fromTo(videoModal.querySelector('.modal-content'), 
-            { scale: 0.9, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.6, ease: 'power4.out' }
-        );
+        const content = videoModal.querySelector('.modal-content');
+        if (content) {
+            gsap.fromTo(content, 
+                { scale: 0.9, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.6, ease: 'power4.out' }
+            );
+        }
 
         // Inject YouTube iframe
-        videoWrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/R9pHObXE3pc?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        if (videoWrapper) {
+            videoWrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/R9pHObXE3pc?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        }
     }
 
     function closeModal() {
-        // Modal exit animation
-        gsap.to(videoModal.querySelector('.modal-content'), {
-            scale: 0.92,
-            opacity: 0,
-            duration: 0.4,
-            ease: 'power3.out',
-            onComplete: () => {
-                videoModal.classList.remove('open');
-                videoModal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = ''; // Unlock background scrolling
-                
-                // Restore placeholder to stop video audio
-                videoWrapper.innerHTML = originalPlaceholder;
-            }
-        });
+        if (!videoModal) return;
+        const content = videoModal.querySelector('.modal-content');
+        if (content) {
+            gsap.to(content, {
+                scale: 0.92,
+                opacity: 0,
+                duration: 0.4,
+                ease: 'power3.out',
+                onComplete: () => {
+                    videoModal.classList.remove('open');
+                    videoModal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = ''; // Unlock background scrolling
+                    
+                    // Restore placeholder to stop video audio
+                    if (videoWrapper) {
+                        videoWrapper.innerHTML = originalPlaceholder;
+                    }
+                }
+            });
+        }
     }
 
-    openVideoBtn.addEventListener('click', openModal);
-    closeVideoBtn.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', closeModal);
+    if (openVideoBtn) openVideoBtn.addEventListener('click', openModal);
+    if (closeVideoBtn) closeVideoBtn.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
     
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && videoModal.classList.contains('open')) {
+        if (e.key === 'Escape' && videoModal && videoModal.classList.contains('open')) {
             closeModal();
         }
     });
